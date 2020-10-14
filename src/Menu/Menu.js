@@ -8,7 +8,7 @@ import {
 
 function Menu() {
   return (
-    <div class="menu">
+    <div className="menu">
       
         <nav>  
             <ul>
@@ -17,7 +17,7 @@ function Menu() {
                 <li><Link to="/login">Login</Link></li>
                
               
-                <li> <a class="skip-to-content-link" href="#main"> 
+                <li> <a className="skip-to-content-link" href="#main"> 
                     Skip to content
                   </a></li>
             </ul>

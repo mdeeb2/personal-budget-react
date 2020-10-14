@@ -6,17 +6,19 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  
 } from "react-router-dom";
 
 
+
 import Menu from './Menu/Menu';
+import chartMake from './chartMake/chartMake' ;
+
 import Hero from './Hero/Hero';
 import HomePage from './HomePage/HomePage';
 import Footer from './Footer/Footer';
 import AboutPage from './AboutPage/AboutPage';
 import Login from './Login/Login';
-
 
 
 
@@ -39,13 +41,16 @@ function App() {
         <AboutPage></AboutPage>
       </Route>
       
-
-
+      <Route path = "/"><HomePage/>  
+      </Route>
+      <Route path = "/"><chartMake/> 
+      </Route>
 
 </Switch>
 
       </div>
-      <HomePage/>
+     
+    
       <Footer/>
     </Router>
   );
