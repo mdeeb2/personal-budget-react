@@ -1,56 +1,57 @@
-import React, { Component } from 'react'
-import Chart from "chart.js";
+import { render } from '@testing-library/react';
 import axios from 'axios';
-
-
-
-
-        var dataSource = {
+import React, { useEffect, useState } from 'react';
+import {Doughnut} from 'react-chartjs-2';
+//implemented use state and set data to what I think it wanted
+function ChartMake() {
+    const [chartData, setChartState] = useState({})
+       const myChart = () => {
+        let myData = [];
+        let dataLabels = [];
+        axios.get('http://localhost:4000/budget')
+        .then(res =>{
+            console.log(res);
+            for(const dataObj of res.data.myBudget){
+                myData.push(parseInt(dataObj.budget))
+                dataLabels.push(dataObj.title)
+            }
+            setChartState({
+                labels: dataLabels,
                 datasets: [
                     {
-                        data: [],
-                        backgroundColor: [
-                            '#ffcd56' ,
-                            '#ff6384' ,
-                            '#36a2eb' ,
-                            '#fd6b19', 
-                            'purple',
-                            'black',
-                            'orange',
-                            'green',
-                            'cyan',
-                            'red',
-                            'brown',
-                        ]
+                        data: myData,
+                        backgroundColor: ['#ffcd56' ,
+                        '#ff6384' ,
+                        '#36a2eb' ,
+                        '#fd6b19', 
+                        'purple',
+                        'black',
+                        'orange',
+                        'green',
+                        'cyan',
+                        'red',
+                        'brown',
+                  ]
                     }
-                ],
-                labels: []
-            };
+                ]
+            })
+        })
+        .catch(err =>{
+            console.log(err);
+        })
+        console.log(myData, dataLabels);
 
-        function createChart() {
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var myPieChart = new Chart(ctx, {
-                type: 'pie',
-                data: dataSource
-            });
-        }
+       
+    }
+    useEffect(()=>{
+        myChart()
+    }, [])
+  return (
+      <div>
+          <Doughnut data = {chartData}/>
+      </div>
+      
+  );
+}
 
-        function getBudget() {
-            axios.get('http://localhost:4000/budget')
-            .then(function (res) {
-                for (var i = 0; i < res.data.myBudget.length; i++) {
-                    dataSource.datasets[0].data[i] = res.data.myBudget[i].budget;
-                    dataSource.labels[i] = res.data.myBudget[i].title;
-                    
-                }
-               createChart();
-            });
-        }
-
-        getBudget();
-    
-
-
-        
-
-  
+export default ChartMake;

@@ -43,8 +43,7 @@ function App() {
       
       <Route path = "/"><HomePage/>  
       </Route>
-      <Route path = "/"><chartMake/> 
-      </Route>
+      
 
 </Switch>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+import ChartMake from '../chartMake/chartMake';
 
 function HomePage() {
   return (
@@ -69,12 +69,9 @@ function HomePage() {
                 </p>
             </div>
     
-            <div className="text-box">
+            <div className="chart-box">
                 <h1>Free</h1>
-                <p>
-                    <canvas id="myChart" width="400" height="400"></canvas>
-
-                </p>
+               <ChartMake/>  
             </div>
 
         </div>
